@@ -1,0 +1,7 @@
+명령어 모음
+
+npm uninstall -g create-react-app (리액트 앱 제거)
+npm install -g create-react-app (리액트 앱 재설치)
+npx create-react-app [app-name] (리액트 앱 실행)
+cd my-app (리액트 앱 이동)
+npm start (리액트 실행)
