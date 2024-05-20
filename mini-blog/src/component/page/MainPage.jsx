@@ -36,13 +36,13 @@ function MainPage(props) {
                 <Button
                     title="글 작성하기"
                     onClick={() => {
-                        navigate("/post-write");
+                        navigate("/post-write"); //페이지 이동
                     }}
                 />
 
                 <PostList
-                    posts={data}
-                    onClickItem={(item) => {
+                    posts={data} //import한 값 PostList로 전달
+                    onClickItem={(item) => { // 파라미터로 함수 자체를 넘김
                         navigate(`/post/${item.id}`);
                     }}
                 />

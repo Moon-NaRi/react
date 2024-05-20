@@ -3,7 +3,7 @@ import {
   BrowserRouter,
   Routes,
   Route
-} from "react-router-dom";
+} from "react-router-dom";  // 블로그 path 설정용
 import styled from "styled-components";
 
 //Pages
@@ -22,8 +22,10 @@ function App(props) {
     <BrowserRouter>
       <MainTitleText>나리의 미니 블로그</MainTitleText>
       <Routes>
+        {/* index : 기본 경로 설정 */}
         <Route index element={<MainPage/>}/>
         <Route path="post-write" element={<PostWritePage/>}/>
+        {/* postId post의 ID 값을 Path에 넣는다 */}
         <Route path="post/:postId" element={<PostViewPage/>}/>
       </Routes>
     </BrowserRouter>

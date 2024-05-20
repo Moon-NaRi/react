@@ -27,6 +27,7 @@ function PostListItem(props) {
 
     return (
         <Wrapper onClick={onClick}>
+            {/* 제목까지만 보여주고 onclick 됐을 때 path(page) 변경 */}
             <TitleText>{post.title}</TitleText>
         </Wrapper>
     );
