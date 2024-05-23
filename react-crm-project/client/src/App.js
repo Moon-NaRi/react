@@ -11,7 +11,6 @@ import React, {useState,useEffect} from 'react';
 
 //https://mui.com/material-ui/react-table/ 가면 여러가지 샘플 참고 가능
 function App() {
-  
   const [customers, setCustomers] = useState('');
 
   useEffect (() => {

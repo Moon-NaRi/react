@@ -11,15 +11,15 @@ function Customer (props) {
         <TableRow>
             <TableCell>
             <CustomerProfile
-            image={customer.image}
-            name={customer.name}
-            id={customer.id}/>
+            image={customer.IMAGE}
+            name={customer.NAME}
+            id={customer.ID}/>
             </TableCell>
             <TableCell>
             <CustomerInfo
-                birthday={customer.birthday}
-                gender={customer.gender}
-                job={customer.job}
+                birthday={customer.BIRTHDAY}
+                gender={customer.GENDER}
+                job={customer.JOB}
             />
             </TableCell>
         </TableRow>
