@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import post from 'axios';
+import axios from "axios";
 
 function CustomerAdd (props) {
     const [file, setFile] = useState(null);
@@ -10,8 +11,14 @@ function CustomerAdd (props) {
     const [fileName, setFileName] = useState('');
 
     const handleFileChange = (event) => {
-        setFile(event.target.files[0]);
-        setFileName(event.target.value);
+        const {files} = event.target;
+        const uploadFile = files[0];
+        setFile(uploadFile);
+        const reader = new FileReader();
+        reader.readAsDataURL(uploadFile);
+        reader.onloadend = () => {
+            setFileName(reader.result);
+        }
     };
     const handleNameChange = (event) => {
         setName(event.target.value);
@@ -25,13 +32,32 @@ function CustomerAdd (props) {
     const handleJobChange = (event) => {
         setJob(event.target.value);
     };
-    const handleFormSubmit = (event) => {
+    const handleFormSubmit = async (event) => {
         event.preventDefault();
-        addCustomer(
-            file, name, birthday, gender, job, fileName
-        ).then((response) => {
-            console.log(response.data);
-        })
+        // addCustomer(
+        //     file, name, birthday, gender, job, fileName
+        // ).then((response) => {
+        //     console.log(response.data);
+        // })
+        try {
+            const formData2 = new FormData();
+            const config2 = {
+                headers: {
+                    'content-type': 'multipart/form-data'
+                }
+            }
+
+            formData2.append('image', file);
+            formData2.append('name', name);
+            formData2.append('birthday', birthday);
+            formData2.append('gender', gender);
+            formData2.append('job', job);
+            formData2.append('fileName', fileName);
+            const response = await axios.post('/api/customers', formData2, config2);
+            console.log('response : ' + response);
+        } catch (error) {
+            console.error(error);
+        }
 
         setFile(null);
         setName('');

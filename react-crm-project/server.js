@@ -16,13 +16,12 @@ const conn = mariaDB.createConnection({
   database: conf.database,
   connectionLimit: conf.connectionLimit
 });
-conn.connect();
 
 const multer = require('multer');
 const upload = multer({dest: './upload'});
 
 app.get('/api/customers', (req, res) => {
-  conn.query("SELECT * FROM crm.customers",
+  conn.query("SELECT * FROM crm.customers WHERE ISDELETED = 0",
     (err, rows, fields) => {
       res.send(rows);
     }
@@ -32,7 +31,8 @@ app.get('/api/customers', (req, res) => {
 app.use('image', express.static('./upload')); //사용자에게 업로드 폴더 공유
 
 app.post('/api/customers', upload.single('image'), (req, res) => {
-  let sql = 'INSERT INTO CUSTOMER VALUES (null, ?, ?, ?, ?, ?)';
+  console.log('u r here');
+  let sql = 'INSERT INTO CUSTOMERS VALUES (null, ?, ?, ?, ?, ?, NOW(), NULL, 0)';
   let image = '/image/' + req.file.filename;
   let name = req.body.name;
   let birthday = req.body.birthday;
@@ -44,6 +44,16 @@ app.post('/api/customers', upload.single('image'), (req, res) => {
     console.log(err);
     console.log(rows);
   })
+});
+
+app.delete('/api/customers/:id', (req, res) => {
+  let sql = 'UPDATE CUSTOMERS SET ISDELETED = 1 WHERE ID = ?'
+  let params = [req.params.id];
+  conn.query(sql, params,
+    (err, rows, fields) => {
+      res.send(rows);
+    }
+  )
 });
 
 /* ejs 사용
