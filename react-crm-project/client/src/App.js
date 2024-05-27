@@ -8,6 +8,7 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableRow from "@mui/material/TableRow";
 import React, {useState,useEffect} from 'react';
+import CustomerAdd from './components/CustomerAdd';
 
 //https://mui.com/material-ui/react-table/ 가면 여러가지 샘플 참고 가능
 function App() {
@@ -20,23 +21,26 @@ function App() {
   }); //mount, update 모두 호출
 
   return (
-    <Paper>
-    <Table>
-      <TableHead>
-        <TableRow>
-          <TableCell>CustomerProfile</TableCell>
-          <TableCell>CustomerInfo</TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-      { customers ?
-        customers.map((customer) => {
-          return <Customer customer={customer}/>;
-        }) : "Now loading...."
-      }
-      </TableBody>
-    </Table>
-    </Paper>
+    <div>
+      <Paper>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>CustomerProfile</TableCell>
+            <TableCell>CustomerInfo</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+        { customers ?
+          customers.map((customer) => {
+            return <Customer customer={customer}/>;
+          }) : "Now loading...."
+        }
+        </TableBody>
+      </Table>
+      </Paper>
+      <CustomerAdd/>
+    </div>
   );
 }
 

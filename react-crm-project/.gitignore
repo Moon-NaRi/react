@@ -11,6 +11,9 @@
 # database
 /database.json
 
+# image upload
+/upload
+
 # production
 /build
 

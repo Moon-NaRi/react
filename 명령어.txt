@@ -11,3 +11,5 @@ npm install http(server.js)
 npm install express(server.js)
 npm install body-parser(server.js)
 npm install mariadb(마리아디비설치)
+npm install --save axios (file 처리용)
+npm install --save multer
