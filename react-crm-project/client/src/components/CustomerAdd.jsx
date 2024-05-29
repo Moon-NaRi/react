@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import post from 'axios';
 import axios from "axios";
 
 function CustomerAdd (props) {
@@ -34,11 +33,6 @@ function CustomerAdd (props) {
     };
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        // addCustomer(
-        //     file, name, birthday, gender, job, fileName
-        // ).then((response) => {
-        //     console.log(response.data);
-        // })
         try {
             const formData2 = new FormData();
             const config2 = {
@@ -67,7 +61,7 @@ function CustomerAdd (props) {
         setFileName('');
 
         window.location.reload();
-    }
+    };
 
     return (
         <form onSubmit={handleFormSubmit}>
@@ -84,25 +78,6 @@ function CustomerAdd (props) {
             <button type="submit">추가하기</button>
         </form>
     );
-}
-
-function addCustomer(file, name, birthday, gender, job, fileName) {
-    const url = '/api/customers';
-    const formData = new FormData();
-    const config = {
-        headers: {
-            'content-type': 'multipart/form-data'
-        }
-    }
-
-    formData.append('image', file);
-    formData.append('name', name);
-    formData.append('birthday', birthday);
-    formData.append('gender', gender);
-    formData.append('job', job);
-    formData.append('fileName', fileName);
-
-    return post(url, formData, config);
 }
 
 export default CustomerAdd;
