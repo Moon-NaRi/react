@@ -5,3 +5,8 @@ npm install -g create-react-app (리액트 앱 재설치)
 npx create-react-app [app-name] (리액트 앱 실행)
 cd my-app (리액트 앱 이동)
 npm start (리액트 실행)
+npm i react react-dom
+npm i -D webpack webpack-cli
+npm i -D @babel/core @babel/preset-env @babel/preset-react babel-loader
+npm i react-refresh @pmmmwh/react-refresh-webpack-plugin -D
+npm i -D webpack-dev-server
